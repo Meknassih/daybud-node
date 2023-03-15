@@ -18,38 +18,50 @@ const { saltRound, jwtExpirationInterval, jwtSecret } = require('../../config/en
  * User Schema
  * @private
  */
-const UserModel = new Schema({
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-    lowercase: true,
-    trim: true,
+const UserModel = new Schema(
+  {
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+      lowercase: true,
+      trim: true,
+    },
+    name: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    photo: {
+      type: String,
+      default: DEFAULT_IMAGE,
+    },
+    role: {
+      type: String,
+      enum: ROLES,
+      default: 'user',
+    },
+    password: {
+      type: String,
+      required: true,
+      minlength: 6,
+    },
+    active: {
+      type: Boolean,
+      default: true,
+    },
+    nordigen: {
+      tokens: {
+        access: String,
+        refresh: String,
+        access_expires: Number,
+        refresh_expires: Number,
+        createdAt: { type: Date, default: new Date().valueOf() - 99999 },
+      },
+    },
   },
-  name: {
-    type: String,
-    required: true,
-    trim: true,
-  },
-  photo: {
-    type: String,
-    default: DEFAULT_IMAGE,
-  },
-  role: {
-    type: String,
-    enum: ROLES,
-    default: 'user',
-  },
-  password: {
-    type: String,
-    required: true,
-    minlength: 6,
-  },
-  active: {
-    type: Boolean,
-    default: true,
-  },
-}, { timestamps: true });
+  { timestamps: true }
+);
 
 /**
  * Add your

@@ -11,6 +11,7 @@ const MorganProd = {
 
 module.exports = {
   env: process.env.NODE_ENV,
+  host: process.env.HOST,
   port: process.env.PORT,
   jwtSecret: process.env.JWT_SECRET,
   jwtExpirationInterval: process.env.JWT_EXPIRATION_MINUTES,
@@ -43,4 +44,9 @@ module.exports = {
   redisPort: process.env.REDIS_PORT,
   redisHost: process.env.REDIS_HOST,
   redisPassword: process.env.REDIS_PASSWORD,
+  nordigen: {
+    id: process.env.NORDIGEN_ID,
+    key: process.env.NORDIGEN_KEY,
+    baseUrl: process.env.NORDIGEN_BASE_URL,
+  },
 };

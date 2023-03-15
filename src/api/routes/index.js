@@ -16,4 +16,6 @@ app.use('/auth', require('./auth'));
 
 app.use('/users', require('./user'));
 
+app.use('/accounts', require('./account'));
+
 module.exports = app;

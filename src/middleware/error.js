@@ -4,16 +4,16 @@ const { env } = require('../config/env-vars');
 
 /**
  * Error Handler Sends Stack Trace only during Development Environment
- * @param {Error} err
+ * @param {APIError} err
  * @param {Request} req
  * @param {Response} res
- * @param {next} next
+ * @param {Function} next
  */
 const Handler = (err, req, res, next) => {
   const response = {
-    code: err.status,
+    code: err.status || 500,
     message: err.message,
-    errors: err.errors,
+    errors: err.errors || [],
     stack: err.stack,
   };
   if (env === 'production') delete response.stack;
